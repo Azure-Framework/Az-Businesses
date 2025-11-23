@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Az Businesses</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="biz-root" class="biz-app hidden">
+    <div class="biz-browser-bar">
+      <div class="biz-browser-controls">
+        <span class="biz-btn-circle"></span>
+        <span class="biz-btn-circle"></span>
+        <span class="biz-btn-circle"></span>
+      </div>
+      <div class="biz-browser-url">
+        <span>www.az-businesses.net</span>
+      </div>
+      <button id="bizCloseBtn" class="biz-close-btn">&times;</button>
+    </div>
+
+    <div class="biz-hero">
+      <div class="biz-hero-overlay"></div>
+      <div class="biz-hero-main">
+        <div class="biz-hero-logo">
+          <span class="biz-logo-script">Az</span>
+          <span class="biz-logo-sub">BUSINESSES</span>
+        </div>
+        <div class="biz-hero-text">
+          <h2 id="bizTitle">BUSINESS MANAGEMENT</h2>
+          <p id="bizSubtitle">Open, hire, stock, and sell – all from one GTA-style interface.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="biz-shell">
+      <div class="biz-tabs">
+        <button class="biz-tab active" data-tab="shop">Shop</button>
+        <button class="biz-tab" data-tab="inventory">Inventory</button>
+        <button class="biz-tab" data-tab="employees">Employees</button>
+        <button class="biz-tab" data-tab="info">Info</button>
+      </div>
+
+      <div class="biz-main">
+        <div class="biz-left">
+          <div id="bizModeBadge" class="biz-mode-badge">CUSTOMER</div>
+          <div id="bizItems" class="biz-items"></div>
+        </div>
+        <div class="biz-right">
+          <!-- SHOP -->
+          <div class="biz-panel" id="panel-shop">
+            <h3>Shop</h3>
+            <p>Browse items sold at this business. Prices are set by the owner.</p>
+            <div id="bizSelectedItem" class="biz-selected-item">
+              <div class="biz-selected-title">Select an item</div>
+              <div class="biz-selected-desc"></div>
+              <div class="biz-selected-price"></div>
+              <button id="bizBuyItemBtn" class="biz-primary-btn" disabled>Purchase</button>
+            </div>
+          </div>
+
+          <!-- INVENTORY / STOCK -->
+          <div class="biz-panel hidden" id="panel-inventory">
+            <h3>Inventory</h3>
+            <p>Owner / manager: stock and price the goods your customers can buy.</p>
+            <div id="bizInventoryList" class="biz-employee-list"></div>
+
+            <div id="bizInventoryControls" class="biz-owner-controls hidden">
+              <h4>Stock New Item</h4>
+              <label>
+                Item label:
+                <input id="bizNewItemLabel" type="text" placeholder="Repair Kit" />
+              </label>
+              <label>
+                Item ID:
+                <input id="bizNewItemId" type="text" placeholder="repairkit" />
+              </label>
+              <label>
+                Price:
+                <input id="bizNewItemPrice" type="number" min="0" step="1" placeholder="5000" />
+              </label>
+              <button id="bizAddItemBtn" class="biz-secondary-btn">Add / Update Item</button>
+            </div>
+          </div>
+
+          <!-- EMPLOYEES / HIRE -->
+          <div class="biz-panel hidden" id="panel-employees">
+            <h3>Employees</h3>
+            <p>Owner / manager: hire staff and manage their roles.</p>
+            <div id="bizEmployeeList" class="biz-employee-list"></div>
+
+            <div id="bizEmployeeControls" class="biz-owner-controls hidden">
+              <h4>Hire Employee</h4>
+              <label>
+                Server ID (online):
+                <input id="bizNewEmployeeServerId" type="number" min="1" step="1" placeholder="12" />
+              </label>
+              <label>
+                Role:
+                <select id="bizNewEmployeeRole">
+                  <option value="staff">Staff</option>
+                  <option value="manager">Manager</option>
+                </select>
+              </label>
+              <button id="bizAddEmployeeBtn" class="biz-secondary-btn">Hire</button>
+            </div>
+          </div>
+
+          <!-- INFO / PROMOTE / OPEN / WITHDRAW / DEPOSIT / EDIT -->
+          <div class="biz-panel hidden" id="panel-info">
+            <h3>Business Info</h3>
+            <div id="bizInfoBlock" class="biz-info-block"></div>
+
+            <div id="bizForSaleBlock" class="biz-forsale-block hidden">
+              <h4>This location is for sale</h4>
+              <p id="bizForSaleText"></p>
+              <button id="bizBuyLocationBtn" class="biz-primary-btn">Purchase business</button>
+            </div>
+
+            <div id="bizOwnerControls" class="biz-owner-controls hidden">
+              <h4>Edit Business Info</h4>
+              <label>
+                Business name:
+                <input id="bizEditName" type="text" placeholder="Business name" />
+              </label>
+              <label>
+                Business type:
+                <input id="bizEditType" type="text" placeholder="custom / mechanic / shop" />
+              </label>
+              <label>
+                Status:
+                <select id="bizEditStatus">
+                  <option value="open">Open</option>
+                  <option value="closed">Closed</option>
+                </select>
+              </label>
+              <button id="bizSaveInfoBtn" class="biz-secondary-btn">Save Info</button>
+
+              <h4 style="margin-top:8px;">Business Funds</h4>
+              <label>
+                Deposit amount:
+                <input id="bizDepositAmount" type="number" min="0" step="1" placeholder="5000" />
+              </label>
+              <button id="bizDepositBtn" class="biz-secondary-btn">Deposit</button>
+
+              <label style="margin-top:6px;">
+                Withdraw amount:
+                <input id="bizWithdrawAmount" type="number" min="0" step="1" placeholder="5000" />
+              </label>
+              <button id="bizWithdrawBtn" class="biz-secondary-btn">Withdraw</button>
+
+              <h4 style="margin-top:8px;">Promote / Advertise</h4>
+              <label>
+                Ad message:
+                <input id="bizAdMessage" type="text" maxlength="120" placeholder="Grand opening sale, 20% off repairs!" />
+              </label>
+              <small id="bizAdFeeText" class="biz-ad-fee"></small>
+              <button id="bizAdBtn" class="biz-secondary-btn">Promote Business</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global business ad toast -->
+  <div id="biz-ad-toast" class="biz-ad-toast hidden">
+    <div class="biz-ad-header">Business Advertisement</div>
+    <div class="biz-ad-body">
+      <div id="bizAdLine1"></div>
+      <div id="bizAdLine2"></div>
+      <div id="bizAdLine3"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

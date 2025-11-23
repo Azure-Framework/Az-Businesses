@@ -1,0 +1,617 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-dark: #020814;
+  --bg-panel: #07101a;
+  --bg-panel-alt: #081624;
+  --accent: #0087b0;
+  --accent-soft: #46d0e0;
+  --text-main: #ffffff;
+  --text-sub: #bbbbc4;
+  --border-soft: rgba(255, 255, 255, 0.12);
+  --browser-bar: #111824;
+  --card-bg: #07131f;
+  --card-bg-hover: #0b1b2b;
+  --card-border: rgba(255, 255, 255, 0.06);
+  --stat-bg: rgba(255, 255, 255, 0.08);
+  --radius: 6px;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: transparent;
+  color: var(--text-main);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.biz-app {
+  position: absolute;
+  inset: 5vh 8vw;
+  border-radius: 10px;
+  overflow: hidden;
+  /* was red-tinted, now azure/blue */
+  background: radial-gradient(circle at top, #0a3b66 0, #031022 45%, #020712 100%);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toasts (global promo notifications) */
+
+.biz-toast-container {
+  position: absolute;
+  right: 2vw;
+  top: 6vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.biz-toast {
+  min-width: 260px;
+  max-width: 360px;
+  background: rgba(0, 0, 0, 0.94);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 10px;
+  font-size: 12px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+  animation: bizToastIn 0.18s ease-out;
+}
+
+.biz-toast-title {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.biz-toast-meta {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.biz-toast-message {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.biz-toast-fee {
+  font-size: 11px;
+  color: var(--accent-soft);
+}
+
+.biz-toast.fade-out {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+
+@keyframes bizToastIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Browser bar */
+
+.biz-browser-bar {
+  height: 40px;
+  background: linear-gradient(to bottom, #17263a, #111824);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 12px;
+}
+
+.biz-browser-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.biz-owner-controls select {
+  padding: 5px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 12px;
+}
+
+.biz-btn-circle {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #777;
+}
+
+.biz-browser-url {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 999px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+.biz-close-btn {
+  border: none;
+  /* was #4a0009 (red), now azure-ish */
+  background: #005a88;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Hero */
+
+.biz-hero {
+  position: relative;
+  height: 30%;
+  /* was red gradient, now azure/blue */
+  background-image: radial-gradient(circle at right, #0090ff 0, #004a7d 40%, #020814 100%);
+  overflow: hidden;
+}
+
+.biz-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.7));
+}
+
+.biz-hero-main {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 22px 36px;
+}
+
+.biz-hero-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.biz-logo-script {
+  font-family: "Oswald", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 12px rgba(0,0,0,0.7);
+}
+
+.biz-logo-sub {
+  font-family: "Oswald", system-ui, sans-serif;
+  letter-spacing: 4px;
+  font-size: 14px;
+  color: var(--accent-soft);
+}
+
+.biz-hero-text {
+  text-align: right;
+}
+
+.biz-hero-text h2 {
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+
+.biz-hero-text p {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+/* Shell */
+
+.biz-shell {
+  flex: 1;
+  /* was red-tinted, now blue-tinted */
+  background: radial-gradient(circle at top, #061521 0, #020d18 50%, #020712 100%);
+  padding: 18px 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.biz-tabs {
+  display: inline-flex;
+  /* was #2a151f (maroon), now deep blue */
+  background: #0c1c2a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.biz-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-sub);
+  padding: 7px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-transform: uppercase;
+}
+
+.biz-tab.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.biz-main {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 2.2fr 2.8fr;
+  gap: 16px;
+  height: 100%;
+}
+
+/* Left */
+
+.biz-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.biz-mode-badge {
+  align-self: flex-start;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.biz-items {
+  flex: 1;
+  background: rgba(0,0,0,0.24);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.biz-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.12s, transform 0.12s;
+}
+
+.biz-item-row + .biz-item-row {
+  margin-top: 4px;
+}
+
+.biz-item-row:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-1px);
+}
+
+.biz-item-name {
+  font-weight: 400;
+}
+
+.biz-item-price {
+  color: var(--accent-soft);
+  font-size: 12px;
+}
+
+/* Right */
+
+.biz-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.biz-panel {
+  flex: 1;
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 12px 14px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.biz-panel h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+/* Selected item */
+
+.biz-selected-item {
+  margin-top: 8px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.biz-selected-title {
+  font-size: 14px;
+}
+
+.biz-selected-desc {
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.biz-selected-price {
+  font-size: 13px;
+  color: var(--accent-soft);
+}
+
+/* Employees & info */
+
+.biz-employee-list {
+  max-height: 220px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+
+.biz-employee-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.02);
+  font-size: 12px;
+}
+
+.biz-info-block {
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+.biz-forsale-block {
+  margin-top: 10px;
+  /* was red-tinted, now azure-tinted */
+  background: rgba(0,128,255,0.16);
+  border-radius: 6px;
+  border: 1px solid rgba(0,200,255,0.4);
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.biz-owner-controls {
+  margin-top: 10px;
+  background: rgba(0,0,0,0.22);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.biz-owner-controls h4 {
+  margin-top: 6px;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.biz-owner-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.biz-owner-controls input {
+  padding: 5px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 12px;
+}
+
+/* Buttons */
+
+.biz-primary-btn,
+.biz-secondary-btn {
+  border-radius: 4px;
+  border: none;
+  padding: 7px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* was red gradient, now azure gradient */
+.biz-primary-btn {
+  background: linear-gradient(to bottom, #00a2ff, #0063b8);
+  color: #fff;
+}
+
+.biz-secondary-btn {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.biz-primary-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Scrollbar */
+
+.biz-items::-webkit-scrollbar,
+.biz-employee-list::-webkit-scrollbar {
+  width: 6px;
+}
+.biz-items::-webkit-scrollbar-track,
+.biz-employee-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.biz-items::-webkit-scrollbar-thumb,
+.biz-employee-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+  border-radius: 999px;
+}
+
+/* Toasts (global promo notifications) */
+.biz-toast-container {
+  position: absolute;
+  right: 2vw;
+  top: 6vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.biz-toast {
+  min-width: 260px;
+  max-width: 360px;
+  background: rgba(0, 0, 0, 0.94);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 10px;
+  font-size: 12px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+  animation: bizToastIn 0.18s ease-out;
+}
+
+.biz-toast-title {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.biz-toast-meta {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.biz-toast-message {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.biz-toast-fee {
+  font-size: 11px;
+  color: var(--accent-soft);
+}
+
+.biz-toast.fade-out {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+
+@keyframes bizToastIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Owner controls extra text */
+.biz-ad-fee-help {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+/* ─── Business Ad Toast (top-center GTA-style) ───────────────────── */
+
+.biz-ad-toast {
+  position: absolute;
+  top: 7vh;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 380px;
+  max-width: 620px;
+  background: rgba(0, 0, 0, 0.88);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 8px 14px 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 9999;
+  pointer-events: none; /* don't block clicks on world / UI */
+}
+
+.biz-ad-toast.hidden {
+  display: none !important;
+}
+
+.biz-ad-header {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  /* was pinkish, now azure accent */
+  color: #7fd8ff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  padding-bottom: 3px;
+  margin-bottom: 2px;
+}
+
+.biz-ad-body {
+  font-size: 13px;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+/* First line = [Business Name] */
+#bizAdLine1 {
+  font-weight: 500;
+}
+
+/* Second line = Ad text */
+#bizAdLine2 {
+  font-size: 13px;
+  color: #f0f0f0;
+}
+
+/* Third line unused, keep subtle */
+#bizAdLine3 {
+  display: none;
+}
