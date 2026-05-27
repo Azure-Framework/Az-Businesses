@@ -91,10 +91,7 @@
                 <div class="biz-panel-kicker">Selected Product</div>
                 <h3>Purchase</h3>
               </div>
-              <div class="biz-panel-tools">
-                <button id="bizClearSelectedBtn" class="biz-panel-close" type="button" aria-label="Close selected product">Close</button>
-                <div class="biz-panel-indicator"></div>
-              </div>
+              <div class="biz-panel-indicator"></div>
             </div>
 
             <div id="bizSelectedItem" class="biz-selected-item">
@@ -253,8 +250,6 @@
     </div>
   </div>
 
-  <div id="biz-notify-stack" class="biz-notify-stack" aria-live="polite"></div>
-
   <div id="biz-ad-toast" class="biz-ad-toast hidden">
     <div class="biz-ad-toast-head">Retail Broadcast</div>
     <div class="biz-ad-toast-body">
@@ -265,5 +260,37 @@
   </div>
 
   <script src="script.js"></script>
+<script>
+window.addEventListener('load', () => {
+  nuiOpenBusiness({
+    slotId: 1,
+    mode: 'manage',
+    myRole: 'owner',
+    marketingFee: 150,
+    buyPrice: 8000,
+    biz: {
+      label: "TheStoicBear's Business",
+      type: 'custom',
+      ownerName: 'TheStoicBear',
+      balance: 8,
+      open: true,
+      employees: [
+        {name: 'Chase Edwin', charId: 'CID-2', role: 'manager'},
+        {name: 'Jordan Price', charId: 'CID-8', role: 'staff'}
+      ],
+      inventory: [
+        {id:'water', label:'Water Bottle', description:'Cold bottled water.', price:6},
+        {id:'cola', label:'eCola', description:'Sugary canned soda.', price:9},
+        {id:'bread', label:'Bread', description:'Simple food for a quick bite.', price:8},
+        {id:'snack', label:'Snack Pack', description:'Chips and junk food.', price:11},
+        {id:'bandage', label:'Bandage', description:'Basic first aid.', price:35},
+        {id:'lighter', label:'Lighter', description:'Pocket lighter.', price:18},
+        {id:'rollingpaper', label:'Rolling Paper', description:'A pack of rolling papers.', price:14},
+        {id:'lockpick', label:'Lockpick', description:'Handy tool for certain jobs.', price:120}
+      ]
+    }
+  });
+});
+</script>
 </body>
 </html>

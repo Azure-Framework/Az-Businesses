@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 name 'Az-Businesses'
-author 'Azure(TheStoicBear)'
+author 'MadebyAzure'
 description 'Player-owned businesses with Az-Framework integration'
 version '1.0.0'
 

@@ -1,0 +1,50 @@
+
+.scrollkit,
+.biz-main,
+.biz-left,
+.biz-panel,
+.biz-data-list,
+.biz-catalog-grid {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(118, 174, 214, 0.58) rgba(255, 255, 255, 0.04) !important;
+}
+
+.scrollkit::-webkit-scrollbar,
+.biz-main::-webkit-scrollbar,
+.biz-left::-webkit-scrollbar,
+.biz-panel::-webkit-scrollbar,
+.biz-data-list::-webkit-scrollbar,
+.biz-catalog-grid::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.scrollkit::-webkit-scrollbar-track,
+.biz-main::-webkit-scrollbar-track,
+.biz-left::-webkit-scrollbar-track,
+.biz-panel::-webkit-scrollbar-track,
+.biz-data-list::-webkit-scrollbar-track,
+.biz-catalog-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 999px !important;
+}
+
+.scrollkit::-webkit-scrollbar-thumb,
+.biz-main::-webkit-scrollbar-thumb,
+.biz-left::-webkit-scrollbar-thumb,
+.biz-panel::-webkit-scrollbar-thumb,
+.biz-data-list::-webkit-scrollbar-thumb,
+.biz-catalog-grid::-webkit-scrollbar-thumb {
+  background: rgba(118, 174, 214, 0.48) !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(9, 13, 18, 0.98) !important;
+}
+
+.scrollkit::-webkit-scrollbar-thumb:hover,
+.biz-main::-webkit-scrollbar-thumb:hover,
+.biz-left::-webkit-scrollbar-thumb:hover,
+.biz-panel::-webkit-scrollbar-thumb:hover,
+.biz-data-list::-webkit-scrollbar-thumb:hover,
+.biz-catalog-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(118, 174, 214, 0.68) !important;
+}
